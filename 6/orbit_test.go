@@ -5,33 +5,32 @@ import (
 	"testing"
 )
 
-
 func TestNumOrbits(t *testing.T) {
 	type test struct {
 		input []string
-		want int
+		want  int
 	}
 
 	tests := []test{
 		{
-			input: []string{"COM)B","B)C","C)D","D)E","E)F","B)G","G)H","D)I","E)J","J)K","K)L"},
-			want: 42,
+			input: []string{"COM)B", "B)C", "C)D", "D)E", "E)F", "B)G", "G)H", "D)I", "E)J", "J)K", "K)L"},
+			want:  42,
 		},
 		{
 			input: []string{"COM)B"},
-			want: 1,
+			want:  1,
 		},
 		{
 			input: []string{"COM)B", "B)C"},
-			want: 3,
+			want:  3,
 		},
 		{
 			input: strings.Split(input1, "\n"),
-			want: 227612,
+			want:  227612,
 		},
 	}
 	for _, tc := range tests {
-		t.Run("Test counting total orbits from direct orbit maps", func(t *testing.T){
+		t.Run("Test counting total orbits from direct orbit maps", func(t *testing.T) {
 			ot := buildOrbitTables(tc.input)
 			got := ot.numOrbits()
 			if got != tc.want {
@@ -44,21 +43,21 @@ func TestNumOrbits(t *testing.T) {
 func TestPath(t *testing.T) {
 	type test struct {
 		input []string
-		want int
+		want  int
 	}
 
 	tests := []test{
 		{
 			input: []string{"COM)B", "B)C", "C)D", "D)YOU", "B)E", "E)SAN"},
-			want: 3,
+			want:  3,
 		},
 		{
 			input: strings.Split(input1, "\n"),
-			want: 454,
+			want:  454,
 		},
 	}
 	for _, tc := range tests {
-		t.Run("Test hops between orbits", func(t *testing.T){
+		t.Run("Test hops between orbits", func(t *testing.T) {
 			ot := buildOrbitTables(tc.input)
 			got := ot.getPath("YOU", "SAN")
 			if got != tc.want {

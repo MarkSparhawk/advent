@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-var input = []int {
+var input = []int{
 	102111,
 	81442,
 	104967,
@@ -117,4 +117,3 @@ func main() {
 	fmt.Println(fuel)
 
 }
-

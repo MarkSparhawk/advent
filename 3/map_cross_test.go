@@ -7,16 +7,16 @@ import (
 func TestShortestPathMap(t *testing.T) {
 	type test struct {
 		wires [2]string
-		want int
+		want  int
 	}
-	tests := []test {
+	tests := []test{
 		{
 			wires: [2]string{"R75,D30,R83,U83,L12,D49,R71,U7,L72", "U62,R66,U55,R34,D71,R55,D58,R83"},
-			want: 610,
+			want:  610,
 		},
 		{
 			wires: [2]string{"R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51", "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7"},
-			want: 410,
+			want:  410,
 		},
 		{
 			wires: [2]string{
@@ -39,16 +39,16 @@ func TestShortestPathMap(t *testing.T) {
 func BenchmarkShortestPathMap(b *testing.B) {
 	type test struct {
 		wires [2]string
-		want int
+		want  int
 	}
-	tests := []test {
+	tests := []test{
 		{
 			wires: [2]string{"R75,D30,R83,U83,L12,D49,R71,U7,L72", "U62,R66,U55,R34,D71,R55,D58,R83"},
-			want: 610,
+			want:  610,
 		},
 		{
 			wires: [2]string{"R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51", "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7"},
-			want: 410,
+			want:  410,
 		},
 		{
 			wires: [2]string{
@@ -58,10 +58,10 @@ func BenchmarkShortestPathMap(b *testing.B) {
 			want: 21196,
 		},
 	}
-	for i:= 0; i< b.N; i++ {
+	for i := 0; i < b.N; i++ {
 		for _, tc := range tests {
 			shortestPathMap(tc.wires)
-			
+
 		}
 	}
 }
