@@ -3,8 +3,8 @@ package cross
 import (
 	"fmt"
 	"sort"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 type point struct {
@@ -47,7 +47,7 @@ func shortestPath(wires [2]string) int {
 	for step1, point1 := range trail1 {
 		for step2, point2 := range trail2 {
 			if point1 == point2 {
-				intersectionSteps = append(intersectionSteps, step1 + step2 +2)
+				intersectionSteps = append(intersectionSteps, step1+step2+2)
 			}
 		}
 	}
@@ -57,8 +57,6 @@ func shortestPath(wires [2]string) int {
 
 }
 
-
-
 func abs(x int) int {
 	if x < 0 {
 		return -x
@@ -66,7 +64,7 @@ func abs(x int) int {
 	return x
 }
 func getTrail(wire string) []point {
-	instructions := strings.Split(wire,",")
+	instructions := strings.Split(wire, ",")
 	pointer := point{X: 0, Y: 0}
 	trail := []point{}
 	for _, instruction := range instructions {
@@ -78,22 +76,22 @@ func getTrail(wire string) []point {
 
 		switch direction {
 		case "R":
-			for i:=0; i < distance; i++ {
+			for i := 0; i < distance; i++ {
 				pointer.X++
 				trail = append(trail, pointer)
 			}
 		case "L":
-			for i:=0; i < distance; i++ {
+			for i := 0; i < distance; i++ {
 				pointer.X--
 				trail = append(trail, pointer)
 			}
 		case "U":
-			for i:=0; i < distance; i++ {
+			for i := 0; i < distance; i++ {
 				pointer.Y--
 				trail = append(trail, pointer)
 			}
 		case "D":
-			for i:=0; i < distance; i++ {
+			for i := 0; i < distance; i++ {
 				pointer.Y++
 				trail = append(trail, pointer)
 			}
