@@ -1,6 +1,7 @@
 package intcode
 
-type program struct {
+// Program contains all the code to be exectuted and state.
+type Program struct {
 	code   []int
 	cur    int
 	input  int
