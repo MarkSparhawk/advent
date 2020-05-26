@@ -99,7 +99,8 @@ func (p *Program) intCode() {
 	}
 }
 
-func (p *Program) runProgram() {
+// Run executes the code in the struct in place.
+func (p *Program) Run() {
 	for p.Cur < len(p.Code) {
 		if p.Code[p.Cur] != 99 {
 			p.intCode()

@@ -249,7 +249,7 @@ func TestProgram(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run("Test full Program", func(t *testing.T) {
-			tc.input.runProgram()
+			tc.input.Run()
 			if reflect.DeepEqual(tc.input, tc.want) != true {
 				t.Errorf("Got %+v, wanted %+v", tc.input, tc.want)
 			}
