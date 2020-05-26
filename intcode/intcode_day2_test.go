@@ -7,23 +7,23 @@ import (
 
 func TestDay2Program(t *testing.T) {
 	type test struct {
-		input []int
+		Input []int
 		want  []int
 	}
 
 	tests := []testProgram{
 		{
 			input: Program{
-				code:   []int{1, 1, 1, 4, 99, 5, 6, 0, 99},
-				cur:    0,
-				input:  0,
-				output: 0,
+				Code:   []int{1, 1, 1, 4, 99, 5, 6, 0, 99},
+				Cur:    0,
+				Input:  0,
+				Output: 0,
 			},
 			want: Program{
-				code:   []int{30, 1, 1, 4, 2, 5, 6, 0, 99},
-				cur:    8,
-				input:  0,
-				output: 0,
+				Code:   []int{30, 1, 1, 4, 2, 5, 6, 0, 99},
+				Cur:    8,
+				Input:  0,
+				Output: 0,
 			},
 		},
 	}

@@ -1,82 +1,82 @@
 package intcode
 
-// Program contains all the code to be exectuted and state.
+// Program contains all the Code to be exectuted and state.
 type Program struct {
-	code   []int
-	cur    int
-	input  int
-	output int
+	Code   []int
+	Cur    int
+	Input  int
+	Output int
 }
 
 //Instruction 1
 func (p *Program) add() {
-	p.code[p.paramLocation(3)] = p.code[p.paramLocation(1)] + p.code[p.paramLocation(2)]
-	p.cur += 4
+	p.Code[p.paramLocation(3)] = p.Code[p.paramLocation(1)] + p.Code[p.paramLocation(2)]
+	p.Cur += 4
 }
 
 //Instruction 2
 func (p *Program) multiply() {
-	p.code[p.paramLocation(3)] = p.code[p.paramLocation(1)] * p.code[p.paramLocation(2)]
-	p.cur += 4
+	p.Code[p.paramLocation(3)] = p.Code[p.paramLocation(1)] * p.Code[p.paramLocation(2)]
+	p.Cur += 4
 }
 
 //Instruction 3
 func (p *Program) write() {
-	p.code[p.paramLocation(1)] = p.input
-	p.cur += 2
+	p.Code[p.paramLocation(1)] = p.Input
+	p.Cur += 2
 }
 
 //Instruction 4
 func (p *Program) read() {
-	p.output = p.code[p.paramLocation(1)]
-	p.cur += 2
+	p.Output = p.Code[p.paramLocation(1)]
+	p.Cur += 2
 }
 
 //Instruction 5
 func (p *Program) jumpIfTrue() {
-	if p.code[p.paramLocation(1)] != 0 {
-		p.cur = p.code[p.paramLocation(2)]
+	if p.Code[p.paramLocation(1)] != 0 {
+		p.Cur = p.Code[p.paramLocation(2)]
 	} else {
-		p.cur += 3
+		p.Cur += 3
 	}
 }
 
 //Instruction 6
 func (p *Program) jumpIfFalse() {
-	if p.code[p.paramLocation(1)] == 0 {
-		p.cur = p.code[p.paramLocation(2)]
+	if p.Code[p.paramLocation(1)] == 0 {
+		p.Cur = p.Code[p.paramLocation(2)]
 	} else {
-		p.cur += 3
+		p.Cur += 3
 	}
 }
 
 //Instruction 7
 func (p *Program) lessThan() {
-	if p.code[p.paramLocation(1)] < p.code[p.paramLocation(2)] {
-		p.code[p.paramLocation(3)] = 1
+	if p.Code[p.paramLocation(1)] < p.Code[p.paramLocation(2)] {
+		p.Code[p.paramLocation(3)] = 1
 	} else {
-		p.code[p.paramLocation(3)] = 0
+		p.Code[p.paramLocation(3)] = 0
 	}
-	p.cur += 4
+	p.Cur += 4
 }
 
 //Instruction 8
 func (p *Program) equal() {
-	if p.code[p.paramLocation(1)] == p.code[p.paramLocation(2)] {
-		p.code[p.paramLocation(3)] = 1
+	if p.Code[p.paramLocation(1)] == p.Code[p.paramLocation(2)] {
+		p.Code[p.paramLocation(3)] = 1
 	} else {
-		p.code[p.paramLocation(3)] = 0
+		p.Code[p.paramLocation(3)] = 0
 	}
-	p.cur += 4
+	p.Cur += 4
 }
 
 type inst struct {
-	opcode int
+	opCode int
 	params []int
 }
 
-func (p *Program) intcode() {
-	op := p.code[p.cur] % 100
+func (p *Program) intCode() {
+	op := p.Code[p.Cur] % 100
 	switch op {
 	case 1:
 		p.add()
@@ -100,9 +100,9 @@ func (p *Program) intcode() {
 }
 
 func (p *Program) runProgram() {
-	for p.cur < len(p.code) {
-		if p.code[p.cur] != 99 {
-			p.intcode()
+	for p.Cur < len(p.Code) {
+		if p.Code[p.Cur] != 99 {
+			p.intCode()
 		} else {
 			return
 		}
@@ -112,12 +112,12 @@ func (p *Program) runProgram() {
 
 func (p *Program) paramLocation(offset int) int {
 
-	// Set location to memory address stored in cur + offset assuming positional mode
-	location := p.code[p.cur+offset]
+	// Set location to memory address stored in Cur + offset assuming positional mode
+	location := p.Code[p.Cur+offset]
 
-	// If we're in immediate mode, the parameter is simply stored at the cur + offset
-	if (p.code[p.cur] / pow(10, offset+1) % 10) == 1 {
-		location = p.cur + offset
+	// If we're in immediate mode, the parameter is simply stored at the Cur + offset
+	if (p.Code[p.Cur] / pow(10, offset+1) % 10) == 1 {
+		location = p.Cur + offset
 	}
 
 	return location
